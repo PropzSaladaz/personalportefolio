@@ -1,0 +1,112 @@
+body {
+  min-height: 100vh;
+}
+
+.main_body {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.language_topic {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.language_topic {
+  width: 100%;
+  max-width: 55rem;
+  height: fit-content;
+  margin-inline: 3rem;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+
+.language_topic .image {
+  width: 9rem;
+  height: 11rem;
+  background-color: antiquewhite;
+  border-radius: 1rem;
+}
+
+.language_topic:nth-child(1) {
+  background-color: var(--main-eletric-blue);
+}
+
+.language_topic:nth-child(2) {
+  margin-left: 10rem;
+  background-color: rgb(255, 144, 144);
+}
+
+.language_topic:nth-child(3) {
+  margin-right: 8rem;
+  background-color: bisque;
+}
+
+.flex_container h1 {
+  color: var(--main-grey);
+  font-weight: 600;
+  width: auto;
+}
+
+.flex_container > p {
+  display: inline-block;
+  color: var(--main-grey);
+  font-weight: 700;
+  margin-top: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.flex_container > p:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.languages_container {
+  margin-top: 1rem;
+  max-width: inherit;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.language {
+  background-color: var(--main-grey);
+  padding: 0.8rem 1rem;
+  margin-block: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 56px 94px rgba(0, 0, 0, 0.16),
+    0px 25.8905px 52.3352px rgba(0, 0, 0, 0.118668),
+    0px 14.814px 33.9475px rgba(0, 0, 0, 0.100285),
+    0px 8.99196px 22.1264px rgba(0, 0, 0, 0.0863917),
+    0px 5.41805px 13.8195px rgba(0, 0, 0, 0.0736083),
+    0px 3.01712px 7.77167px rgba(0, 0, 0, 0.059715),
+    0px 1.29764px 3.30843px rgba(0, 0, 0, 0.0413319);
+  border-radius: 14px;
+}
+
+.language > p::after,
+.language > p::before {
+  white-space: pre-wrap;
+  color: var(--main-orange);
+}
+
+.language > * {
+  font-weight: 600;
+  color: var(--main-eletric-blue);
+}
+
+.language > p::before {
+  content: "<  ";
+}
+
+.language > p::after {
+  content: "  />";
+}

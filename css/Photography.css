@@ -1,0 +1,247 @@
+:root {
+  --right-button-size: 5rem;
+  --photo-grid-width: 15rem;
+  --photo-grid-height: 21rem;
+  --photo-grid-col-gap: 2rem;
+  --photo-grid-row-gap: 2rem;
+  --grid-width: calc(
+    5 * var(--photo-grid-width) + 4 * var(--photo-grid-col-gap)
+  );
+  --grid-height: calc(
+    2 * var(var(--photo-grid-height)) + var(--photo-grid-row-gap)
+  );
+  --container-grid-anim-duration: 1.5s;
+}
+
+body {
+  background-color: var(--main-grey);
+}
+
+/* container for each Image section */
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: wrap;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 2rem 6rem 4rem 2rem;
+  background-color: black;
+  transition: height 1s ease-in-out;
+}
+
+.landscape {
+  position: absolute;
+  top: 0rem;
+  width: 110%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: filter var(--container-grid-anim-duration) ease-in-out,
+    opacity var(--container-grid-anim-duration) ease-in-out;
+}
+
+/* Main container header */
+.container h1 {
+  opacity: 0;
+  font-size: 5rem;
+  line-height: 0.6em;
+  font-weight: 600;
+  text-shadow: 2px 4px 23px rgba(0, 0, 0, 0.35);
+  padding: 2rem 5rem 0 5rem;
+  z-index: 1;
+}
+
+/* --- right button for each section --- */
+.right_button {
+  position: absolute;
+  width: var(--right-button-size);
+  height: var(--right-button-size);
+  right: calc(var(--right-button-size) / -2);
+  z-index: 1;
+}
+
+.inner_right_button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 100%;
+}
+
+.inner_right_button:hover {
+  cursor: pointer;
+}
+
+/* outer circle */
+.inner_right_button:nth-child(1) {
+  background-color: var(--main-purple);
+  border: 2px dashed white;
+}
+
+/* inner circle */
+.inner_right_button:nth-child(2) {
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  transition: transform 300ms ease-in-out;
+}
+
+.inner_right_button:nth-child(1):hover + .inner_right_button:nth-child(2),
+.inner_right_button:hover:nth-child(2) {
+  transform: scale(1.3);
+}
+
+.right_button_description {
+  position: absolute;
+  left: -4rem;
+  transform: rotateZ(-90deg) translateX(-1.6rem) translateY(-0.3rem);
+  font-weight: 600;
+}
+
+/* Grid apearing for each section */
+
+.sub_header {
+  margin-left: 0.15em;
+  font-size: 1.5rem;
+  opacity: 0;
+  transform-origin: top;
+}
+
+@keyframes sub_header_apearence {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0.4;
+  }
+}
+
+.gallery_grid {
+  width: 0;
+  height: 0;
+  display: grid;
+  grid-template-columns: repeat(5, var(--photo-grid-width));
+  grid-template-rows: repeat(2, var(--photo-grid-height));
+  row-gap: var(--photo-grid-row-gap);
+  column-gap: var(--photo-grid-col-gap);
+}
+
+/* contains polaroid background and image */
+.img_container {
+  position: relative;
+  width: var(--photo-grid-width);
+  height: var(--photo-grid-height);
+  transform: scale(0);
+  opacity: 0;
+  border-radius: 100%;
+  transition: transform 500ms ease-in-out 3s, border-radius 200ms ease-in 3s;
+}
+
+/* white background arround image */
+.polaroid_background {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: inherit;
+  height: inherit;
+  background-color: white;
+  border-radius: 0.5rem;
+  transition: all 300ms ease-out;
+}
+
+.polaroid_background img {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 96%;
+  height: 96%;
+  border-radius: inherit;
+}
+
+.polaroid_background:hover {
+  filter: brightness(1.1);
+  background-color: wheat;
+  -webkit-box-shadow: -2px 11px 12px -3px #000000;
+  box-shadow: -2px 11px 12px -3px #000000;
+}
+
+/* select 3,6,9 */
+.img_container:nth-child(3n) .polaroid_background:hover {
+  transform: scale(1.1) rotateZ(3deg);
+}
+
+/* select 2,5,8 */
+.img_container:nth-child(3n-1) .polaroid_background:hover {
+  transform: scale(1.1) rotateZ(-2deg);
+}
+
+/* select 1,4,7,10 */
+.img_container:nth-child(3n-2) .polaroid_background:hover {
+  transform: scale(1.1) rotateZ(1.5deg);
+}
+
+/* container overlay */
+.overlay {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  opacity: 0.75;
+  z-index: 0;
+}
+
+.container:nth-child(1) .header {
+  animation: header_apearence 0.5s ease-in-out forwards;
+}
+
+/* container background images */
+
+.container:nth-child(1) .landscape {
+  background-image: url("../Images/Photography/landscape_1.jpg");
+}
+
+.container:nth-child(2) .landscape {
+  background-image: url("../Images/Photography/landscape_2.jpg");
+}
+
+.container:nth-child(3) .landscape {
+  background-image: url("../Images/Photography/landscape_3.jpg");
+}
+
+.container:nth-child(4) .landscape {
+  background-image: url("../Images/Photography/landscape_4.jpg");
+}
+
+.container:nth-child(5) .landscape {
+  background-image: url("../Images/Photography/landscape_5.jpg");
+}
+
+.rotation {
+  animation: rotation 8s ease-in-out infinite;
+}
+
+@keyframes rotation {
+  50% {
+    transform: rotateZ(180deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+/* Media queries */
+@media (max-width: 1470px) {
+  .gallery_grid {
+    grid-template-columns: repeat(3, var(--photo-grid-width));
+    grid-template-rows: repeat(4, var(--photo-grid-height));
+  }
+}
